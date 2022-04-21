@@ -5,12 +5,18 @@
 import copy
 import torch
 from torch import nn
+from torch.autograd import Variable
 
 
 def FedAvg(w):
     w_avg = copy.deepcopy(w[0])
     for k in w_avg.keys():
         for i in range(1, len(w)):
-            w_avg[k] += w[i][k]
+            w_avg[k] += gaussian(w[i][k])
         w_avg[k] = torch.div(w_avg[k], len(w))
     return w_avg
+
+
+def gaussian(ins, mean = 0, stddev = 0.01):
+    noise = Variable(ins.data.new(ins.size()).normal_(mean, stddev))
+    return ins + noise
