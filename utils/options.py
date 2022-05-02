@@ -7,7 +7,7 @@ import argparse
 def args_parser():
     parser = argparse.ArgumentParser()
     # federated arguments
-    parser.add_argument('--epochs', type=int, default=10, help="rounds of training")
+    parser.add_argument('--epochs', type=int, default=20, help="rounds of training")
     parser.add_argument('--num_users', type=int, default=100, help="number of users: K")
     parser.add_argument('--frac', type=float, default=0.1, help="the fraction of clients: C")
     parser.add_argument('--local_ep', type=int, default=5, help="the number of local epochs: E")
@@ -37,5 +37,16 @@ def args_parser():
     parser.add_argument('--verbose', action='store_true', help='verbose print')
     parser.add_argument('--seed', type=int, default=1, help='random seed (default: 1)')
     parser.add_argument('--all_clients', action='store_true', help='aggregation over all clients')
+
+    #Deep Leakage arguments
+    parser.add_argument('--index', type=int, default="10", help='the index for leaking images on Dataset.')
+    parser.add_argument('--image', type=str, default="./save", help='the path to customized image.')
+    parser.add_argument('--DLG_lr', type=float, default="1.0", help='learning rate for DLG net')
+    parser.add_argument('--num_dummy', type=int, default="1", help='the number of dummy image')
+    parser.add_argument('--iteration', type=int, default="100", help='DLG iteration')
+    parser.add_argument('--num_exp', type=int, default="1", help='DLG number of experiments')
+    parser.add_argument('--noise', type=float, default="0", help='set the noise variance')
+
+
     args = parser.parse_args()
     return args

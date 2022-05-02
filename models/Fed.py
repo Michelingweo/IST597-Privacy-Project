@@ -4,8 +4,14 @@
 
 import copy
 import torch
-from torch import nn
+import os
+
 from torch.autograd import Variable
+import numpy as np
+from torch.utils.data import Dataset
+from torchvision import transforms
+import PIL.Image as Image
+
 
 
 def FedAvg(w):
@@ -20,3 +26,13 @@ def FedAvg(w):
 def gaussian(ins, mean = 0, stddev = 0.01):
     noise = Variable(ins.data.new(ins.size()).normal_(mean, stddev))
     return ins + noise
+
+
+def gaussian_img(img, mean = 0, stddev = 0.01):
+    img = np.array(img, dtype=float)
+    img = img/255
+    noise = np.random.normal(mean, stddev**0.5, img.shape)
+    out = img + noise
+    return out
+
+
