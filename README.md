@@ -2,6 +2,10 @@
 ### This is forked from the open source code:
 https://github.com/shaoxiongji/federated-learning
 
+IST 597 Data Privacy course project.
+
+Utilize noise based differential privacy to defend deep leakage attacks towards federated learning system
+
 ## Requirements
 python>=3.6  
 pytorch>=0.4
